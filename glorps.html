@@ -1,0 +1,118 @@
+﻿<!DOCTYPE html>
+
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8" />
+    <title>Glorps</title>
+    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
+    <!--<script type="text/javascript" src="jquery-2.2.4.min.js"></script>-->
+
+    <script type="text/javascript" src="utility.js"></script>
+    <script type="text/javascript" src="keycodes.js"></script>
+    <script type="text/javascript" src="sound.js"></script>
+    <script type="text/javascript" src="glorps.js"></script>
+    <script type="text/javascript" src="levels.js"></script>
+
+    <style>
+        div {
+            cursor: default;
+        }
+
+         .levelButton {
+            -moz-border-radius: 15px;
+            -webkit-border-radius: 15px;
+            border: 5px solid;
+            padding: 5px;
+            background-color: LawnGreen;
+            border-color:  DarkGreen;
+            min-width: 100px;
+            min-height: 30px;
+            text-align: center;
+        }
+        .levelButtonNumber {
+            font-size: 30px;
+            font-weight: bold;
+        }
+        .levelButtonName {
+            font-size: 14px;
+            font-weight: normal;
+        }
+        
+         .finished {
+             color: salmon;
+         }
+
+        .scoreTitle {
+            font-size: 20px;
+            font-weight: bold;
+            color: black;
+        }
+        .score {
+            font-size: 50px;
+            font-weight: bold;
+            color: red;
+            text-align: center;
+        }
+
+         .levelTextHolder {
+            -moz-border-radius: 15px;
+            -webkit-border-radius: 15px;
+            border: 5px solid;
+            padding: 5px;
+            background-color: moccasin;
+            border-color:  saddlebrown;
+            min-width: 150px;
+            min-height: 30px;
+            font-size: 30px;
+            font-weight: bold;
+            text-align: center;
+            margin-top: 150px;
+            margin-bottom: 50px;
+            margin-left: auto;
+            margin-right: auto;
+            display: block;
+            width:700px;
+        }
+    </style>
+</head>
+<body>
+    <div id="templates" style="display:none">
+        <button class="levelButton" disabled="disabled">
+            <div class="levelButtonNumber"></div>
+            <div class="levelButtonName"></div>
+        </button>
+    </div>
+    <div id="startScreen">
+        <h1>Go Glorps Go!</h1>
+        Game development in progress.  This screen will have graphics someday.
+        <h2>Select level:</h2>
+        <div id="levelButtons">
+        </div>
+        <div id="loading">Loading, please wait...</div>
+    </div>
+    <div id="mainScreen" style="display:none;">
+        <div style="float:left">
+            <canvas id="myCanvas"></canvas>
+            <div class="instructions" style="position:absolute; left: 0; top:0; width: 900px; height: 500px;">
+                <div id="levelStart" class="levelTextHolder" style="display:none">
+                    <div id="levelText"></div>
+                    <button class="levelButton" style="margin: 0 auto; display: block;" onclick="startGame();">Start</button>
+                </div>
+                <div id="levelEnd" class="levelTextHolder"style="display:none">
+                    <div>Go Glorps Go!</div>
+                    <button class="levelButton" style="margin: 0 auto; display: block;" onclick="returnToStartScreen();">Back to Menu</button>
+                </div>
+            </div>
+        </div>
+        <div style="float:left; margin-left:10px;">
+            <div class="scoreTitle">Escaped</div>
+            <div class="score"></div>
+            <button onclick="returnToStartScreen();" style="position: absolute; top:500px;"><img src="back_to_menu_icon.gif" /></button>
+            <button onclick="restartLevel();" style="position: absolute; top:550px;"><img src="replay_icon.gif" /></button>
+        </div>
+        <div style="clear:both"></div>
+        <span id="debug"></span>
+    </div>
+
+</body>
+</html>
