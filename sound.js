@@ -603,6 +603,9 @@ function loadSound(o, source, loadHandler) {
   //Use xhr to load the sound file.
   xhr.open("GET", source, true);
   xhr.responseType = "arraybuffer";
+  xhr.onerror = function (error) {
+      alert("Error loading sound.  If running on local machine, you need to disable a security feature to make this work.  For Chrome, use flag  --allow-file-access-from-files");
+  }
 
   //When the sound has finished loading, decode it using the
   //`decodeAudio` function (which you'll see ahead)

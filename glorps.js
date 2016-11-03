@@ -110,7 +110,7 @@ function initSound() {
     resourcesNeeded++;
     sounds.whenLoaded = whenSomethingHasLoaded;
     sounds.load([
-      SPLAT_SOUND
+        SPLAT_SOUND
     ]);
 }
 
@@ -135,7 +135,7 @@ function pressEnterClicksButton(button) {
     });
 }
 
-function keyDownHandler() {
+function keyDownHandler(event) {
     if (paused && event.keyCode != ESC) {
         return;
     }
@@ -160,7 +160,7 @@ function keyDownHandler() {
     }
 }
 
-function keyUpHandler() {
+function keyUpHandler(event) {
     keysDown[event.keyCode] = false;
 }
 
@@ -236,7 +236,7 @@ var Glorp = {
         return circleIntersectsRect(circle, rect);
     },
     move: function () {
-        var playerCanRotate = (activeGlorp == this.controlNumber);
+        var playerCanRotate = (activeGlorp == this.controlNumber && activeGlorp.state != DEAD);
         var playerCanMove = (playerCanRotate && this.state == NORMAL);
 
         if (playerCanRotate && keysDown[LEFT_ARROW]) {
@@ -575,7 +575,7 @@ var Dropper = {
         createWall(wallRect);
 
         glorps.forEach(function (glorp) {
-            if (glorp.overlapsRect(wallRect)) {
+            if (glorp.state != DEAD && glorp.overlapsRect(wallRect)) {
                 glorp.state = DEAD;
                 sounds[SPLAT_SOUND].play();
             }
